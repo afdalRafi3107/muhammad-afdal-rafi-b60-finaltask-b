@@ -1,0 +1,13 @@
+/* halaman utama */
+.card .card-body{
+ text-align: center;
+
+}
+.card .card-body img{
+    margin: auto;
+}
+
+/* halaman add prov */
+.container-input{
+    width: 400px;
+}
