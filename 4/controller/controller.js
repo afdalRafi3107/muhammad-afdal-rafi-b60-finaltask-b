@@ -120,13 +120,13 @@ async function addProv(req,res) {
 
     console.log("usernya adalah : ", user);
     const {nama, diresmikan, pulau} = req.body;
-    const photo = 'https://picsum.photos/200';
+    //const photo = 'https://picsum.photos/200';
     
-
+    const image = req.file.path;
     const newProv= {
         nama,
         diresmikan,
-        photo,
+        photo:image,
         pulau,
         user_id:iduser,
     }
@@ -151,24 +151,44 @@ async function renderUpdateProv(req,res) {
 }
 async function UpdateProv(req, res) {
     const id = req.params.id;
-    const {nama, diresmikan, pulau} = req.body;
+    const {nama, diresmikan, pulau, check} = req.body;
     const photo = 'https://picsum.photos/200';
     
+    if(check=="1"){
+        
+        const image = req.file.path;
+        const updateResult = await Provinsi_tb.update(
+            {
+            nama,
+            diresmikan,
+            pulau,
+            photo:image,
+            updatedAt: sequelize.fn("NOW"),
+          },
+          {
+            where :{
+                id,
+            }
+          }
+        );
+        console.log("provinsi Update : ", updateResult);
+    }else{
+        const updateResult = await Provinsi_tb.update(
+            {
+            nama,
+            diresmikan,
+            pulau,
+            updatedAt: sequelize.fn("NOW"),
+          },
+          {
+            where :{
+                id,
+            }
+          }
+        );
+        console.log("provinsi Update : ", updateResult);
 
-    const updateResult = await Provinsi_tb.update(
-        {
-        nama,
-        diresmikan,
-        pulau,
-        updatedAt: sequelize.fn("NOW"),
-      },
-      {
-        where :{
-            id,
-        }
-      }
-    );
-    console.log("provinsi Baru : ", updateResult);
+    }
 
     res.redirect("/index")
 }
@@ -232,14 +252,15 @@ async function renderIdProv(req, res) {
 async function addKab(req, res) {
     
     const {nama, diresmikan, provinsi_id} = req.body;
-    const photo = 'https://picsum.photos/200';
+    // const photo = 'https://picsum.photos/200';
     console.log("prov id : " , provinsi_id);
     
+    const image = req.file.path;
 
     const newKab= {
         nama,
         diresmikan,
-        photo,
+        photo:image,
         provinsi_id,
     }
     
@@ -266,23 +287,41 @@ async function renderUpdateKab(req, res) {
 
 async function updateKab(req,res) {
     const id = req.params.id;
-    const {nama, diresmikan} = req.body;
-    const photo = 'https://picsum.photos/200';
+    const {nama, diresmikan, check} = req.body;
+    //const photo = 'https://picsum.photos/200';
     
-
-    const updateResult = await Kabupaten_tb.update(
-        {
-        nama,
-        diresmikan,
-        updatedAt: sequelize.fn("NOW"),
-      },
-      {
-        where :{
-            id,
-        }
-      }
-    );
-    console.log("kabupaten Baru : ", updateResult);
+    if(check == "1"){
+        const image = req.file.path;
+        const updateResult = await Kabupaten_tb.update(
+            {
+            nama,
+            diresmikan,
+            photo:image,
+            updatedAt: sequelize.fn("NOW"),
+          },
+          {
+            where :{
+                id,
+            }
+          }
+        );
+        console.log("kabupaten Baru : ", updateResult);
+    }else{
+        const updateResult = await Kabupaten_tb.update(
+            {
+            nama,
+            diresmikan,
+            updatedAt: sequelize.fn("NOW"),
+          },
+          {
+            where :{
+                id,
+            }
+          }
+        );
+        
+        console.log("kabupaten Baru : ", updateResult);
+    }
 
     res.redirect("/index")
 }

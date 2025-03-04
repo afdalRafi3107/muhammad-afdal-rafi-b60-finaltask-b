@@ -2,9 +2,9 @@
 
 
     <!-- content -->
-    <div class="container-md container-input" style="text-align: center;">
+    <div class="container-md container-input" style="text-align: center;" >
         <h1>Update Kabupaten/Kota</h1>
-        <form id="tambahKab" action="/updateKab/{{kabupaten.id}}" method="post">
+        <form id="tambahKab" action="/updateKab/{{kabupaten.id}}" method="post" enctype="multipart/form-data"> 
         <div class="input-group mb-3">
          <input name="nama" type="text" class="form-control" placeholder="Nama Kabupaten/kota" aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{kabupaten.nama}}">
         </div>
@@ -12,12 +12,38 @@
          <span class="input-group-text" id="basic-addon2">Diresmikan</span>
          <input name="diresmikan" type="date" class="form-control" placeholder="Diresmikan" aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{kabupaten.diresmikan}}">
         </div>
+        <div class="input-group mb-3 ">
+
+         <p style="text-align: left; margin:0;" class="me-3">Ganti gambar?</p>
+        <div class="form-check mb-2" style="text-align: left;">
+        <input name="check" id="check" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" onchange="showInputImage()">
+         <label class="form-check-label" for="flexCheckDefault">
+             iya
+        </label>
+        </div>
+        </div>
         <div class="input-group mb-3">
-         <input name="image" type="file" class="form-control" placeholder="Logo" aria-label="Recipient's username" aria-describedby="basic-addon2">
+         <input name="image" id="image" type="file" class="form-control" placeholder="Logo" aria-label="Recipient's username" aria-describedby="basic-addon2" style="display: none;">
         </div>
         <div class="input-group mb-3" >
         <button class="btn btn-success" style="width: 100%;" type="submit">Submit</button>
         </div>
         </form>
     </div>
+
+     <script>
+      function showInputImage() {
+          // Get the checkbox
+          var checkBox = document.getElementById("check");
+          // Get the output text
+          var image = document.getElementById("image");
+
+          // If the checkbox is checked, display the output text
+          if (checkBox.checked == true){
+            image.style.display = "block";
+          } else {
+            image.style.display = "none";
+          }
+      }
+    </script>
  {{/layout }}

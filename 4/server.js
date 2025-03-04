@@ -6,9 +6,11 @@ const path = require("path");
 const flash = require("express-flash");
 const methodOverride = require('method-override')
 const session = require('express-session');
+const upload = require("./middlewares/upload-file");
 
 app.set('view engine', 'hbs');
 app.set("views" ,path.join(__dirname, './views'))
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 
 app.use(methodOverride("_method"))
 app.use(express.static('assets'))
@@ -72,18 +74,18 @@ app.get('/addProv', (req, res) => {
     res.redirect("/login")
   }
 })
-app.post('/addProv', addProv);
+app.post('/addProv', upload.single("image"), addProv);
 app.delete("/index/:id", deleteProv);
 app.get("/updateProv/:id", renderUpdateProv);
-app.post("/updateProv/:id", UpdateProv);
+app.post("/updateProv/:id", upload.single("image"), UpdateProv);
 
 app.get("/provDetail/:id", renderProvDetail)
 // -------------------------------kabupaten------------------
 app.get('/addKab/:id', renderIdProv)
 
-app.post('/addKab/', addKab);
+app.post('/addKab/', upload.single("image"), addKab);
 app.get('/updateKab/:id', renderUpdateKab)
-app.post('/updateKab/:id', updateKab)
+app.post('/updateKab/:id', upload.single("image"), updateKab)
 app.delete("/provDetail/:id", deleteKab);
 
 app.listen(port, () => {
