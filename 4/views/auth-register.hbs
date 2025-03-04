@@ -1,0 +1,31 @@
+{{#> layout currentPage='Daftar'}}
+
+
+    <!-- content -->
+    <div class="container-md container-input" style="text-align: center;">
+        <h1>Daftar</h1>
+        <form id="register" class="auth" action="" method="post">
+        <div class="input-group mb-3">
+         <input name="username" type="text" class="form-control" placeholder="nama penguna" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+        <div class="input-group mb-3">
+         <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+        <div class="input-group mb-3">
+         <input name="password" type="password" class="form-control" placeholder="password" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+        <div class="input-group mb-3">
+         <input name="confirmPassword" type="password" class="form-control" placeholder="confirm password" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+        {{#if error }}
+        <div class="alert alert-danger" role="alert">
+        {{ error }}
+        </div>
+        {{/if }}
+        <div class="input-group mb-3" >
+        <button class="btn btn-success" style="width: 100%;" type="submit">daftar</button>
+        </div>
+        </form>
+
+    </div>
+ {{/layout }}

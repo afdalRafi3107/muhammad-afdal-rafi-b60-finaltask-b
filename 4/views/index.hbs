@@ -1,0 +1,47 @@
+
+    {{#> layout currentPage='Home'}}
+    {{#if messages.success}}
+        <div class="alert alert-success" role="alert">
+        {{ messages.success }}
+        </div>
+        {{/if }}
+    <!-- dropdown -->
+    <div class="container-sm input-group mb-4">
+        <button class="btn btn-outline-secondary dropdown-toggle border-success text-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">Provinsi</button>
+        <ul class="dropdown-menu">
+          
+          <form action="/" method="post">
+          <li><a class="dropdown-item text-success" href="#">All</a></li>
+          </form>
+        </ul>
+      </div>
+
+    <!-- content -->
+    <div class="container-md" style="text-align: right;">
+      {{#if user }}
+        <a class="btn btn-success me-3 mb-3" href="/addProv" style="">Add Provinsi</a>
+      {{/if }}
+      <div class="row">
+      {{#each provinsi }}
+        <div class="card border border-white col-3 mb-4" style="width: 18rem; margin:auto">
+            <div class="card-body border border-success mb-2">
+              <img src="{{this.photo}}" class="card-img-top" alt="...">
+              <h5 class="card-title fw-bold text-success">{{this.nama}}</h5>
+              <p class="card-text ">{{this.diresmikan}}</p>
+              <div class="aksiUbah" style="display: flex; justify-content:space-between">
+ 
+                <a href="/updateProv/{{this.id}}" class="btn btn-success btn-sm">ubah</a>
+                <form id="delete" action="/index/{{this.id}}?_method=DELETE" method="post">
+                  <button class="btn btn-danger btn-sm" style="display: inline;" onclick="return confirm('Hapus?')" type="submit">hapus</button>
+                </form>
+
+              </div>
+            </div>
+            <a href="/provDetail/{{this.id}}" class="btn btn-success">Detail</a>
+          </div>
+      {{/each}}
+        
+        </div>
+
+    </div>
+    {{/layout }}

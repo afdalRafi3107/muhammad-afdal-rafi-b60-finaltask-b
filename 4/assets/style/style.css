@@ -6,6 +6,10 @@
 .card .card-body img{
     margin: auto;
 }
+.card .card-body .aksiUbah a,button{
+    width: 100px;
+    
+}
 
 /* halaman add prov */
 .container-input{

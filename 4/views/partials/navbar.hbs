@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-md bg-body-tertiary mb-4">
+        <div class="container-md">
+          <a class="navbar-brand fs-2 fw-bold text-success" href="/index">PROVINSI & KABUPATEN</a>
+          <div class="d-flex">
+            {{#if user}}
+            <span class="me-3">{{user.username}}</span>
+            <a class="link me-3" href="/logout">logout</a>
+            {{/if}}
+            {{#unless user}}
+              <a class="link me-3" href="/login">login</a>
+            {{/unless}}
+          </div>
+            
+          </div>
+        </div>
+      </nav>
