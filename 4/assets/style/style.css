@@ -10,6 +10,11 @@
     width: 100px;
     
 }
+.card .card-body img{
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+}
 
 /* halaman add prov */
 .container-input{

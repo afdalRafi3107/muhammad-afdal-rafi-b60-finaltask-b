@@ -42,6 +42,8 @@ async function authregister(req, res) {
         password:hashedPassword,
     }
 )
+console.log("User Baru : ", newUser);
+
 req.flash("success", "Berhasil mendaftar , seilahkan login");
 res.redirect("/login");
 }
@@ -155,7 +157,7 @@ async function UpdateProv(req, res) {
     const photo = 'https://picsum.photos/200';
     
     if(check=="1"){
-        
+
         const image = req.file.path;
         const updateResult = await Provinsi_tb.update(
             {
@@ -200,7 +202,12 @@ async function deleteProv(req, res) {
             id: id
         }
 }); 
-    console.log("prov yang di hapus : ", deleteProv);
+const deleteKab = await Kabupaten_tb.destroy({
+    where : {
+        provinsi_id:id
+    }
+});
+    console.log("prov yang di hapus : ", deleteprov);
     
     res.redirect("/index");
 }
@@ -265,7 +272,7 @@ async function addKab(req, res) {
     }
     
     const kabAdd = await Kabupaten_tb.create(newKab);
-    console.log("provinsi Baru : ", kabAdd);
+    console.log("Kabupaten Baru : ", kabAdd);
     res.redirect("/index")
     
 }
